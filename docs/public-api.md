@@ -1,5 +1,8 @@
 # Public API
 
+Code Snippet exposes immutable source text, line provenance, selections, and
+annotations. Use the guides for tasks; consult these contracts for exact behavior.
+
 ## `CodeSnippet`
 
 Create a snippet with `CodeSnippet::fromCode()`. Read its code and metadata with `code()`,
@@ -31,3 +34,21 @@ An annotation contains a byte `offset`, positive `length`, application-defined `
 A segment contains contiguous text and the annotations active across that complete region.
 
 All four value objects implement `JsonSerializable`.
+
+## Coordinates and invalid input
+
+| Input | Contract |
+| --- | --- |
+| `startLine` and selected lines | Positive one-based numbers; selected lines must exist in the snippet. |
+| `slice($startOffset, $endOffset)` | Byte range `[start, end)` inside `code()`, including an empty range. |
+| Annotation | Non-negative byte offset, positive length, non-blank type, and a range within the snippet. |
+| `indent($spaces)` | Non-negative number of spaces. |
+| Language string | A registered Alto Language identifier; `null` leaves the language unspecified. |
+
+Violations raise `InvalidArgumentException`. Byte offsets use `strlen()` and
+`substr()` semantics, not Unicode character counts. Original line numbers survive
+slicing and indentation changes. Line annotations are clipped to each line;
+segments split wherever the set of active annotations changes.
+
+See [Snippets](snippets/index.md) and [Annotations](annotations/index.md) for
+complete input/output examples.

@@ -1,0 +1,8 @@
+{
+    "parents": {
+        "snippets/selection": "snippets",
+        "snippets/export": "snippets",
+        "annotations/text": "annotations",
+        "annotations/segments": "annotations"
+    }
+}
