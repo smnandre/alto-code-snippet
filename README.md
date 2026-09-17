@@ -1,4 +1,4 @@
-# ALTO CodeSnippet
+# ALTO Code Snippet
 
 Represent immutable code snippets with source lines, selections, and presentation-neutral
 annotations.
@@ -9,14 +9,14 @@ annotations.
 &nbsp; ![License](https://img.shields.io/github/license/altophp/code-snippet?label=License&labelColor=050608&color=00B7FF)
 &nbsp; [![GitHub Sponsors](https://img.shields.io/github/sponsors/smnandre?logo=githubsponsors&logoColor=00B7FF&label=%20Sponsor&labelColor=050608&color=00B7FF)](https://github.com/sponsors/smnandre)
 
-CodeSnippet turns source code into a portable model with original line numbers, selected lines,
+Code Snippet turns source code into a portable model with original line numbers, selected lines,
 and generic byte-range annotations. Renderers can consume that model without coupling this package
 to HTML, SVG, terminals, slides, or a syntax highlighter.
 
 ```php
 use Alto\Code\Snippet\CodeSnippet;
 
-$snippet = CodeSnippet::fromCode($code, 'php', startLine: 24)
+$snippet = CodeSnippet::fromCode("first\nsecond\nthird", 'php', startLine: 24)
     ->selectLines(3);
 
 echo $snippet->lines()[2]->number; // 26
@@ -24,13 +24,17 @@ echo $snippet->lines()[2]->number; // 26
 
 ## Installation
 
-Install ALTO CodeSnippet with Composer:
+This package is currently distributed from its development branch; no stable
+release is published yet. Use an explicit VCS repository for evaluation.
+
+Install ALTO Code Snippet with Composer:
 
 ```bash
-composer require alto/code-snippet
+composer config repositories.alto-code-snippet vcs https://github.com/altophp/code-snippet
+composer require alto/code-snippet:dev-main
 ```
 
-CodeSnippet requires PHP 8.4 or later and `alto/language`.
+Code Snippet requires PHP 8.4 or later and `alto/language`.
 
 ## Quick Start
 
@@ -126,7 +130,7 @@ $json = json_encode($snippet, JSON_THROW_ON_ERROR);
 
 ## Package boundary
 
-CodeSnippet does not read files, detect languages, locate declarations, tokenize code, or render
+Code Snippet does not read files, detect languages, locate declarations, tokenize code, or render
 output. It only owns the immutable, presentation-neutral data model passed between those steps.
 
 See the [documentation](docs/index.md) for installation, a guided example, and the public API.
@@ -148,7 +152,7 @@ Changes to public behavior should include tests and documentation.
 
 ## Support
 
-ALTO CodeSnippet is open source. You can support its continued development through
+ALTO Code Snippet is open source. You can support its continued development through
 [GitHub Sponsors](https://github.com/sponsors/smnandre).
 
 Sharing this package with others or
@@ -156,5 +160,5 @@ Sharing this package with others or
 
 ## License
 
-ALTO CodeSnippet is released by [ALTO PHP](https://altophp.com) under the
+ALTO Code Snippet is released by [ALTO PHP](https://altophp.com) under the
 [MIT License](LICENSE).
